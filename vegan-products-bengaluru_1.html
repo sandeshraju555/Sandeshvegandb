@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vegan Products – Bengaluru & Pan-India</title>
+  <style>
+    :root {
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-12: 3rem;
+      --color-bg: #f7f6f2;
+      --color-surface: #fbfbf9;
+      --color-border: #d4d1ca;
+      --color-text: #28251d;
+      --color-text-muted: #7a7974;
+      --color-primary: #01696f;
+      --color-primary-hover: #0c4e54;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+    header {
+      padding: var(--space-4) var(--space-4) var(--space-2);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .title {
+      font-size: var(--text-xl);
+      margin: 0 0 var(--space-2);
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-4);
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .controls input[type="search"] {
+      flex: 1 1 220px;
+      padding: var(--space-2);
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      font-size: var(--text-sm);
+    }
+    .controls select {
+      padding: var(--space-2);
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      font-size: var(--text-sm);
+      background: #fff;
+    }
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .pill {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      font-size: var(--text-xs);
+      cursor: pointer;
+      background: #fff;
+    }
+    .pill.active {
+      background: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
+    }
+    h2.section-title {
+      font-size: var(--text-lg);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-3);
+    }
+    .section-intro {
+      margin-bottom: var(--space-3);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-3);
+    }
+    .card {
+      background: var(--color-surface);
+      border-radius: 0.75rem;
+      border: 1px solid rgba(40, 37, 29, 0.1);
+      padding: var(--space-3);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-2);
+      margin-bottom: var(--space-2);
+    }
+    .card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      margin: 0;
+    }
+    .card-tag {
+      font-size: var(--text-xs);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+    .card-body {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .card-links a {
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.15rem 0.5rem;
+      background: rgba(1, 105, 111, 0.06);
+    }
+    .card-links a:hover {
+      background: rgba(1, 105, 111, 0.14);
+    }
+    .card-meta {
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(1, 105, 111, 0.09);
+      color: var(--color-primary);
+      font-size: var(--text-xs);
+      margin-right: 0.25rem;
+    }
+    .footer-note {
+      margin-top: var(--space-8);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+    .header-text { flex: 1 1 260px; min-width: 0; }
+    .share-row {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--color-primary);
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .share-btn:hover { background: var(--color-primary-hover); }
+    .share-btn.secondary {
+      background: #fff;
+      color: var(--color-primary);
+    }
+    .share-btn.secondary:hover { background: rgba(1, 105, 111, 0.08); }
+    .share-toast {
+      position: fixed;
+      bottom: var(--space-4);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--color-text);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
+    .share-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    @media (max-width: 480px) {
+      .share-row { width: 100%; }
+      .share-btn { flex: 1 1 auto; justify-content: center; }
+    }
+    @media (max-width: 640px) {
+      header { padding-inline: var(--space-3); }
+      main { padding-inline: var(--space-3); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div class="header-text">
+        <h1 class="title">Vegan Products – Bengaluru & Pan-India</h1>
+        <p class="subtitle">Curated vegan food, accessories & personal care products you can buy in Bengaluru or order online across India.</p>
+      </div>
+      <div class="share-row">
+        <button type="button" class="share-btn" id="shareBtn" aria-label="Share this page">
+          <span aria-hidden="true">↗</span> Share
+        </button>
+        <a class="share-btn secondary" id="whatsappShare" href="#" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
+          <span aria-hidden="true">💬</span> WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class="share-toast" id="shareToast" role="status" aria-live="polite">Link copied!</div>
+
+  <main>
+    <section class="controls" aria-label="Search and filter options">
+      <input type="search" id="search" placeholder="Search by brand, product type or city…" aria-label="Search products" />
+      <select id="locationFilter" aria-label="Location filter">
+        <option value="all">Location: All</option>
+        <option value="bengaluru">Can buy in Bengaluru</option>
+        <option value="beyond">Outside Bengaluru (online to Bengaluru)</option>
+      </select>
+      <div class="pill-group" aria-label="Category filters">
+        <button type="button" class="pill active" data-category="all">All</button>
+        <button type="button" class="pill" data-category="food">Food & Dairy</button>
+        <button type="button" class="pill" data-category="protein">Protein (Tofu/Tempeh)</button>
+        <button type="button" class="pill" data-category="desserts">Ice-cream & Mithai</button>
+        <button type="button" class="pill" data-category="dining">Dining & Cafes</button>
+        <button type="button" class="pill" data-category="accessories">Belts & Wallets</button>
+        <button type="button" class="pill" data-category="cosmetics">Cosmetics & Personal Care</button>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Section 1 – Can Be Physically Bought in Bengaluru (and Ordered Online)</h2>
+      <p class="section-intro">Brands and products with a confirmed physical presence in Bengaluru, plus online ordering options.</p>
+      <div class="grid" id="grid-bengaluru" aria-label="Products available in Bengaluru"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Section 2 – Beyond Bengaluru (Order Online to Bengaluru)</h2>
+      <p class="section-intro">Brands based outside Bengaluru with pan-India online delivery, including to Bengaluru.</p>
+      <div class="grid" id="grid-beyond" aria-label="Products outside Bengaluru"></div>
+    </section>
+
+    <p class="footer-note">Links and descriptions are indicative and may change; please verify details on the respective brand websites or marketplaces before ordering.</p>
+  </main>
+
+  <script>
+    const products = [
+      {
+        name: 'One Good / Nourish You',
+        section: 'bengaluru',
+        categories: ['food'],
+        tag: 'Plant-based curd & milk',
+        description: 'Peanut-based vegan curd (Peanut Kurd), millet mylk and cashew–oat–millet mylk; 100% plant-based dairy alternatives.',
+        links: [
+          { label: 'Mylks & curd', url: 'https://nourishyou.in/collections/mylks-and-curd' },
+          { label: 'Main site', url: 'https://nourishyou.in/' },
+          { label: 'Bengaluru availability', url: 'https://nourishyou.in/pages/blr' }
+        ],
+        meta: 'Physically available via distribution in Bengaluru (ghee, butter, spreads, mylk and curd); pan-India delivery via their website.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'White Cub',
+        section: 'bengaluru',
+        categories: ['food', 'desserts'],
+        tag: 'Vegan curd, butter & ice-cream',
+        description: 'India’s pioneering vegan brand offering curd, buttermylk, butter and almond-mylk ice-creams including sugar-free variants.',
+        links: [
+          { label: 'Vegan ice-cream range', url: 'https://whitecub.in/collections/vegan-ice-cream' },
+          { label: 'Bengaluru store info', url: 'https://whitecub.in/pages/bangalore' },
+          { label: 'Swiggy: vegan curd (Koramangala)', url: 'https://www.swiggy.com/city/bangalore/white-cub-consciously-vegan-koramangala-ejipura-rest914240' },
+          { label: 'Swiggy: ice-cream (Yelahanka)', url: 'https://www.swiggy.com/city/bangalore/white-cub-consciously-vegan-yelahanka-yelahanka-bangalore-rest1319372' }
+        ],
+        meta: 'Physical presence via Nature’s Basket & Foodhall outlets across Bengaluru (Indiranagar, Koramangala, Richmond Town, Whitefield, Sadashivanagar, Sahakarnagar, Kammanahalli, Sarjapur Road, MG Road) — full addresses on the Bengaluru store info page; also on Swiggy for curd and ice-cream delivery.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Health On Plants',
+        section: 'bengaluru',
+        categories: ['food', 'protein'],
+        tag: 'Tofu, tempeh, curds & vegan cheese',
+        description: '100% plant-based brand making organic tofu in multiple flavours, tempeh, dairy-free curds, vegan cheese and unsweetened soy milk.',
+        links: [
+          { label: 'Shop (pan-India)', url: 'https://healthonplants.com/shop' },
+          { label: 'Main site', url: 'https://healthonplants.com/' }
+        ],
+        meta: 'Bengaluru-based facility with cold-chain deliveries to major cities; pan-India online ordering.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Hello Tempayy',
+        section: 'bengaluru',
+        categories: ['food', 'protein'],
+        tag: 'Ready-to-cook tempeh cubes',
+        description: 'High-protein tempeh made from non-GMO soybeans, available as natural cubes and marinated flavours like Simply Sriracha and Szechuan Chilli.',
+        links: [
+          { label: 'Official store', url: 'https://hellotempayy.com/collections/meet-tempayy' },
+          { label: 'BigBasket vegan range', url: 'https://www.bigbasket.com/pb/hello-tempayy/dairy-free-vegan/' }
+        ],
+        meta: 'Launched in Bengaluru; available in local stores and via BigBasket/Blinkit and their own site.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Minus 30',
+        section: 'bengaluru',
+        categories: ['desserts', 'food'],
+        tag: 'Vegan & sugar-free gelato',
+        description: 'Artisanal gelato brand with several vegan and sugar-free flavours; available across Bengaluru via Swiggy and quick-commerce platforms.',
+        links: [
+          { label: 'Brand site', url: 'https://minus30.co/' },
+          { label: 'Swiggy Bengaluru listing', url: 'https://www.swiggy.com/city/bangalore/minus-30' }
+        ],
+        meta: 'Multiple Bengaluru outlets listed on delivery platforms; gelato jars also sold via BigBasket/Zepto.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Nomou Vegan Icecream',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Plant-based gelato shop',
+        description: 'Dedicated vegan ice-cream parlour on Old Airport Road, offering plant-based gelato in flavours like Bourbon Vanilla and Saffron Pistachio.',
+        links: [
+          { label: 'Zomato store page', url: 'https://www.zomato.com/bangalore/nomou-vegan-icecream-airport-road-bangalore/order' }
+        ],
+        meta: 'Walk-in parlour in Bengaluru plus third-party delivery options.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Dittoo Vegan Ice Creams',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Coconut-milk handcrafted ice-cream',
+        description: 'Handcrafted vegan ice-creams using coconut milk and jaggery; classic and experimental flavours like rosemary lime and beetroot.',
+        links: [
+          { label: 'LBB feature', url: 'https://lbb.in/bangalore/dittoo-vegan-icecreams-delivers-tub-13ccd0/' }
+        ],
+        meta: 'Served at Go Native & Enerjuvate cafes in Bengaluru; direct ordering for city-wide delivery.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Corner House (Indiranagar)',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Vegan ice-cream flavours',
+        description: 'Iconic Corner House outlet offering three vegan flavours: Mango Passion Fruit, Chocolate Brownie and Roasted Pistachio.',
+        links: [
+          { label: 'LBB article', url: 'https://lbb.in/bangalore/corner-house-vegan-ice-cream/' }
+        ],
+        meta: 'Physical parlour in Indiranagar with vegan options; delivery via nearby Swiggy radius.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Herbivo',
+        section: 'bengaluru',
+        categories: ['food'],
+        tag: 'Vegan/plant-based grocery',
+        description: 'Specialised vegan and plant-based grocery store featuring milks, staples, snacks and health-focused products.',
+        links: [
+          { label: 'Herbivo website', url: 'https://www.herbivo.in' }
+        ],
+        meta: 'Physical store in Bengaluru (e.g., Indiranagar/Old Madras Road) plus online store.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'The Organic World',
+        section: 'bengaluru',
+        categories: ['food'],
+        tag: 'Organic & vegan-friendly chain',
+        description: 'Organic supermarket chain stocking plant-based milks, vegan snacks and cruelty-free personal care.',
+        links: [
+          { label: 'The Organic World', url: 'https://www.theorganicworld.com' }
+        ],
+        meta: 'Multiple outlets in Bengaluru (e.g., Indiranagar) plus online shopping.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Simpli Namdhari’s',
+        section: 'bengaluru',
+        categories: ['food'],
+        tag: 'Vegan-friendly supermarket',
+        description: 'Large-format supermarket with fresh produce and a range of vegan/plant-based packaged items.',
+        links: [
+          { label: 'Store info', url: 'https://www.plantspack.com/place/simpli-namdhari-s-bengaluru' }
+        ],
+        meta: 'Highlighted as a vegan-friendly store for Bengaluru; multiple outlets across the city.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Ethik',
+        section: 'bengaluru',
+        categories: ['accessories'],
+        tag: 'Non-leather belts, wallets & shoes',
+        description: 'Bengaluru-based premium non-leather brand for men, offering vegan shoes, belts, wallets and accessories made from microfiber and plant-cellulose.',
+        links: [
+          { label: 'Ethik online store', url: 'https://ethikonline.com' },
+          { label: 'About Ethik', url: 'https://ethikonline.com/pages/about-ethik' },
+          { label: 'Elite Reversible Belt', url: 'https://veggora.com/product/ethik-elite-reversible-belt/' }
+        ],
+        meta: 'Founded in Bengaluru; products available online pan-India and via select local outlets.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Plum Goodness',
+        section: 'bengaluru',
+        categories: ['cosmetics'],
+        tag: '100% vegan beauty & personal care',
+        description: 'Fully vegan, PETA-certified skincare, haircare, bodycare and makeup brand including lipsticks, with multiple Bengaluru mall outlets.',
+        links: [
+          { label: 'Plum website', url: 'https://plumgoodness.com' },
+          { label: 'Bengaluru store listing', url: 'https://www.justdial.com/Bangalore/Plum/nct-10377998' }
+        ],
+        meta: 'Stores at Mantri Square, Lulu Mall, Bhartiya Mall of Bengaluru; strong online presence via Plum and Nykaa.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Crave by Leena',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: '100% vegan bakery & patisserie',
+        description: 'PETA-awarded, 100% vegan bakery in Koramangala offering plant-based cakes, cupcakes, brownies and sugar-free/gluten-free desserts.',
+        links: [
+          { label: 'Crave by Leena website', url: 'https://www.cravebyleena.com/' },
+          { label: 'Store info (Koramangala)', url: 'https://www.cravebyleena.com/pages/about-us' }
+        ],
+        meta: 'Koramangala retail store plus city-wide delivery across Bangalore via in-house team and platforms.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Vijay Sweets',
+        section: 'beyond',
+        categories: ['desserts', 'food'],
+        tag: '100% vegan Indian sweets & snacks',
+        description: 'Coimbatore-based vegan sweets store offering Mysorepak variants, vegan Kaju Katli, halwa, laddoos and savouries.',
+        links: [
+          { label: 'Vijay Sweets online store', url: 'https://vijaysweets.com/' }
+        ],
+        meta: 'Ships pan-India; ideal for festive gifting and traditional vegan mithai orders to Bengaluru.',
+        city: 'Coimbatore'
+      },
+      {
+        name: 'Live Yum Foods',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Vegan cheese & ghee',
+        description: 'Vegan cheddar & mozzarella shreds, cream cheese and vegan "ghee"; dairy-free, soy-free, gluten-free and nut-free.',
+        links: [
+          { label: 'VeganFirst feature', url: 'https://www.veganfirst.com/article/live-yum-launches-vegan-mozzarella-and-cheddar-cheese-shreds-pan-india' }
+        ],
+        meta: 'Ships pan-India via own site, online grocers and vegan marketplaces.',
+        city: 'India-wide'
+      },
+      {
+        name: 'Urban Platter',
+        section: 'beyond',
+        categories: ['food'],
+        tag: 'Vegan mayo, milks & pantry essentials',
+        description: 'Mumbai-based brand with vegan premium mayo & Tandoori mayo, plant-based milks, tofu, chaap, sauces, snacks and plant-based cheese balls.',
+        links: [
+          { label: 'Urban Platter website', url: 'https://urbanplatter.com/' },
+          { label: 'Vegan Tandoori Mayo', url: 'https://urbanplatter.com/products/urban-platter-vegan-tandoori-mayo-300g-10-6oz-dairy-free-mayonnaise-no-palm-oil-no-trans-fat' }
+        ],
+        meta: 'Ships across India via their website and marketplaces.',
+        city: 'Mumbai'
+      },
+      {
+        name: 'Labnoft',
+        section: 'beyond',
+        categories: ['accessories'],
+        tag: 'PU vegan leather belts',
+        description: 'Online-first brand specialising in men’s belts made from PU vegan leather, featuring auto-lock and reversible buckle designs.',
+        links: [
+          { label: 'Labnoft website', url: 'https://labnoft.com/' }
+        ],
+        meta: 'Ships pan-India via own site, marketplaces and quick-commerce platforms (Instamart, etc.).',
+        city: 'India-wide'
+      },
+      {
+        name: 'Brown Living (Desserto cactus leather)',
+        section: 'beyond',
+        categories: ['accessories'],
+        tag: 'Cactus leather wallets & purses',
+        description: 'Online sustainable marketplace selling wallets and purses made from Desserto cactus leather, a plant-based leather alternative.',
+        links: [
+          { label: 'Desserto cactus leather collection', url: 'https://brownliving.in/collections/desserto-cactus-leather-essentials' }
+        ],
+        meta: 'Ships across India as a curated eco-conscious marketplace.',
+        city: 'Online-only'
+      },
+      {
+        name: 'VeganMall',
+        section: 'beyond',
+        categories: ['food', 'cosmetics', 'accessories'],
+        tag: '100% vegan marketplace',
+        description: 'Pan-India marketplace offering vegan sweets, packaged foods, pantry staples, cosmetics and personal care products.',
+        links: [
+          { label: 'VeganMall', url: 'https://veganmall.in' }
+        ],
+        meta: 'All products are vegan; useful for discovering non-Bengaluru brands deliverable to Bengaluru.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Vegandukan',
+        section: 'beyond',
+        categories: ['food', 'cosmetics'],
+        tag: 'Vegan groceries & faux meats',
+        description: 'Online store carrying vegan cheeses, faux meats, snacks, pantry staples and personal care from Indian vegan brands.',
+        links: [
+          { label: 'Vegandukan', url: 'https://vegandukan.com' }
+        ],
+        meta: 'Ships to Bengaluru; useful for harder-to-find vegan packaged products.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Gelato Factory',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Vegan-friendly gelato',
+        description: 'Gelato parlour offering vegan-friendly scoops alongside its regular range, featured in city vegan ice-cream roundups.',
+        links: [
+          { label: 'Curly Tales feature', url: 'https://curlytales.com/6-best-vegan-ice-cream-places-in-bangalore-to-pamper-yourself-with-ice-creams/' }
+        ],
+        meta: 'Outlets on Hosur Road and in HSR Layout, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Papacream',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Vegan & sugar-free ice-cream tubs',
+        description: 'Known for 500 ml take-home tubs, including vegan and sugar-free variants alongside its regular ice-cream range.',
+        links: [
+          { label: 'Curly Tales feature', url: 'https://curlytales.com/6-best-vegan-ice-cream-places-in-bangalore-to-pamper-yourself-with-ice-creams/' }
+        ],
+        meta: 'JP Nagar outlet, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'NOTO Healthy Ice Cream',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Dairy-free, gluten-free ice-cream',
+        description: 'Health-focused ice-cream counter offering dairy-free, gluten-free ice-creams and fruit popsicles.',
+        links: [
+          { label: 'Curly Tales feature', url: 'https://curlytales.com/6-best-vegan-ice-cream-places-in-bangalore-to-pamper-yourself-with-ice-creams/' }
+        ],
+        meta: 'Brigade Road outlet, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Zero Vegan Gelato',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: '100% vegan gelato & sorbets',
+        description: 'Dedicated vegan gelato outlet offering gelatos, sorbets and popsicles, with nothing dairy-based on the menu.',
+        links: [
+          { label: 'Curly Tales feature', url: 'https://curlytales.com/6-best-vegan-ice-cream-places-in-bangalore-to-pamper-yourself-with-ice-creams/' }
+        ],
+        meta: 'Yelahanka outlet, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Carrots',
+        section: 'bengaluru',
+        categories: ['dining'],
+        tag: 'India’s first vegan restaurant',
+        description: 'Full vegan restaurant serving mains, snacks and desserts, including vegan ice-cream, on an entirely plant-based menu.',
+        links: [
+          { label: 'WhatsHot feature', url: 'https://www.whatshot.in/bangalore/best-vegan-ice-cream-bangalore-c-12814' }
+        ],
+        meta: 'Koramangala, Bengaluru; dine-in and delivery.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'The Culinarium',
+        section: 'bengaluru',
+        categories: ['dining', 'desserts'],
+        tag: 'Vegan ice-cream options',
+        description: 'Cafe offering select vegan ice-cream options alongside its regular menu.',
+        links: [
+          { label: 'WhatsHot feature', url: 'https://www.whatshot.in/bangalore/best-vegan-ice-cream-bangalore-c-12814' }
+        ],
+        meta: 'Vasanth Nagar, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'GMT (Gelateria Montecatini Terme)',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Rotating vegan gelato flavours',
+        description: 'Gelato counter that rotates in vegan flavours alongside its dairy-based range.',
+        links: [
+          { label: 'WhatsHot feature', url: 'https://www.whatshot.in/bangalore/best-vegan-ice-cream-bangalore-c-12814' }
+        ],
+        meta: 'Indiranagar, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Enerjuvate Studio & Cafe',
+        section: 'bengaluru',
+        categories: ['dining'],
+        tag: 'Vegan-friendly cafe menu',
+        description: 'Cafe with multiple vegan options including desserts; also one of the venues serving Dittoo vegan ice-cream.',
+        links: [
+          { label: 'WhatsHot feature', url: 'https://www.whatshot.in/bangalore/best-vegan-ice-cream-bangalore-c-12814' }
+        ],
+        meta: 'Koramangala, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Vegan Heat',
+        section: 'bengaluru',
+        categories: ['dining', 'desserts'],
+        tag: 'Vegan junk food & ice-cream delivery',
+        description: 'Delivery-focused brand offering vegan junk food and ice-cream around the city.',
+        links: [
+          { label: 'WhatsHot feature', url: 'https://www.whatshot.in/bangalore/best-vegan-ice-cream-bangalore-c-12814' }
+        ],
+        meta: 'Delivery across Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Justbe Cafe',
+        section: 'bengaluru',
+        categories: ['dining', 'desserts'],
+        tag: 'Whole-foods plant-based cafe',
+        description: 'Whole-foods, plant-based restaurant offering vegan desserts and savoury dishes on its everyday menu.',
+        links: [
+          { label: 'VeganFirst feature', url: 'https://www.veganfirst.com/article/31-vegan-mithai-and-dessert-vendors-for-all-festive-occasions' }
+        ],
+        meta: 'Sadashivnagar, Bengaluru.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Vegan Sweet Cart',
+        section: 'bengaluru',
+        categories: ['desserts'],
+        tag: 'Vegan cakes, muffins & cupcakes',
+        description: 'Delivers vegan cakes, muffins and cupcakes made without oil or sugar.',
+        links: [
+          { label: 'VeganFirst feature', url: 'https://www.veganfirst.com/article/31-vegan-mithai-and-dessert-vendors-for-all-festive-occasions' }
+        ],
+        meta: 'Based on Sarjapur Road, Bengaluru; delivery across the city.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Newhide / Hidedge',
+        section: 'beyond',
+        categories: ['accessories'],
+        tag: 'Vegan leather accessories',
+        description: 'Hidedge, the vegan-focused sister line of Newhide, makes artificial/vegan-leather bags, belts and accessories positioned as a best-in-class non-leather range.',
+        links: [
+          { label: 'Newhide website', url: 'https://newhide.in/' }
+        ],
+        meta: 'Ships pan-India via its own website.',
+        city: 'India-wide'
+      },
+      {
+        name: 'Pilgrim',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: '100% vegan, budget-friendly lipsticks',
+        description: '100% vegan, cruelty-free beauty brand with a budget-friendly lipstick and colour-cosmetics range alongside skincare and haircare.',
+        links: [
+          { label: 'Pilgrim website', url: 'https://pilgrim.co.in' },
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India; also on Nykaa, Amazon and quick-commerce apps.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Qurez',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan lipsticks & colour cosmetics',
+        description: 'Colour-cosmetics brand offering vegan lipsticks alongside other makeup products.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Disguise Cosmetics',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'PETA-approved, 100% vegan lipsticks',
+        description: 'PETA-approved brand with a fully vegan, cruelty-free matte lipstick range.',
+        links: [
+          { label: 'VeganFirst feature', url: 'https://www.veganfirst.com/article/100-vegan-matte-lipsticks-are-finally-here-and-they-are-amazing' },
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India online; also sold via Nykaa.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Iba Cosmetics',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan, halal lipsticks & lipcare',
+        description: 'Vegan and halal-certified lipsticks and lip-care range, part of a wider makeup and skincare line.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India; widely available online and in stores.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Kiro Beauty',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan lipsticks & base makeup',
+        description: 'Mid-range vegan beauty brand covering lipsticks, eye products and base makeup.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'LoveChild by Masaba',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Fashion-forward vegan lipsticks',
+        description: 'Masaba Gupta-founded colour-cosmetics label with a fashion-forward, fully vegan lipstick range.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India; also on Nykaa.',
+        city: 'Online-only'
+      },
+      {
+        name: 'FAE Beauty',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'PETA-certified vegan lip & eye products',
+        description: 'PETA-certified vegan brand with lipsticks, lip whips, liners, gloss and select eye products.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Aqualogica',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'PETA-certified vegan skincare',
+        description: 'PETA-certified vegan skincare and bodycare brand covering sunscreens, lotions, cleansers, serums and lip balm.',
+        links: [
+          { label: 'Vegan India Hub directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Insight Cosmetics',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'PETA-certified vegan colour cosmetics',
+        description: 'PETA-certified vegan colour-cosmetics range spanning lipsticks, lip gloss, nail polish, kajal and foundation.',
+        links: [
+          { label: 'Vegan India Hub directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Faces Canada',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Low-cost PETA-certified vegan range',
+        description: 'Widely available, low-cost PETA-certified vegan range spanning lipsticks, tints, foundation and nail enamels.',
+        links: [
+          { label: 'Vegan India Hub directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Ships pan-India; also sold in stores and on Nykaa.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Vicco',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan, cruelty-free everyday essentials',
+        description: 'Long-running Indian brand of vegan, cruelty-free low-cost creams, face wash, toothpaste and hair oil.',
+        links: [
+          { label: 'Vegan India Hub directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Ships pan-India; widely available in stores too.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Nykaa (Vegan filter)',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan filter & lipstick marketplace',
+        description: 'Marketplace with a dedicated vegan filter and a vegan-lipstick category page aggregating vegan cosmetics across many brands.',
+        links: [
+          { label: 'Nykaa vegan lipstick category', url: 'https://www.nykaa.com/dp/vegan-lipstick' }
+        ],
+        meta: 'Ships pan-India to Bengaluru.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Vegan India Hub',
+        section: 'beyond',
+        categories: ['cosmetics', 'food', 'accessories'],
+        tag: 'Vegan brand directory',
+        description: 'Directory of 100% vegan and cruelty-free brands across cosmetics, personal care and more, useful for discovering further options.',
+        links: [
+          { label: 'Cosmetics directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Reference directory rather than a store itself.',
+        city: 'Online-only'
+      },
+      {
+        name: 'MyGlamm',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan lipstick line (LIT Satin Matte)',
+        description: 'Mainstream beauty brand whose LIT Satin Matte lipstick line is fully vegan, alongside other makeup and skincare products.',
+        links: [
+          { label: 'Beauty Inside Out feature', url: 'https://thebeautyinsideout.com/best-natural-lipstick-options-available/' }
+        ],
+        meta: 'Ships pan-India; widely available online and on quick-commerce apps.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Ruby’s Organics',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan, organic-leaning lipsticks',
+        description: 'Clean-beauty brand with a vegan, organic-leaning lipstick and colour-cosmetics range, aggregated on Nykaa’s vegan lipstick page.',
+        links: [
+          { label: 'Nykaa vegan lipstick category', url: 'https://www.nykaa.com/dp/vegan-lipstick' }
+        ],
+        meta: 'Ships pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Asa Beauty, Daughter Earth & Typsy Beauty',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Premium/luxury vegan lipsticks',
+        description: 'Three premium and luxury-positioned Indian beauty labels, each offering fully vegan lipstick and tinted-product ranges.',
+        links: [
+          { label: 'VegGora roundup', url: 'https://veggora.com/11-vegan-lipstick-brands-in-india/' }
+        ],
+        meta: 'Ship pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Innovist, BBlunt & Petalca',
+        section: 'beyond',
+        categories: ['cosmetics'],
+        tag: 'Vegan haircare & bodycare lines',
+        description: 'Three brands with vegan haircare and bodycare lines — shampoos, conditioners, serums and body products.',
+        links: [
+          { label: 'Vegan India Hub directory', url: 'https://veganindiahub.com/directory/cosmetics/' }
+        ],
+        meta: 'Ship pan-India online.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Other plant-based milk & yoghurt brands',
+        section: 'beyond',
+        categories: ['food'],
+        tag: 'GFI India plant-based dairy list',
+        description: 'Broader reference list of 45+ plant-based dairy brands in India, including Epigamia (plant-based), So Good, Oat Mylk, Raw Pressery, Silk, Almond Breeze, Milkin Oats, Only Earth, Better Bet, Slicc and Borges Natura, for further exploration beyond the brands listed individually here.',
+        links: [
+          { label: 'GFI India report (PDF)', url: 'https://gfi-india.org/wp-content/uploads/2025/01/Insights-on-the-plant-based-dairy-category-in-india-Jan-2024.pdf' }
+        ],
+        meta: 'Reference list rather than a single store; individual brand availability varies.',
+        city: 'Online-only'
+      },
+      {
+        name: 'Imagine Meats',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Plant-based mutton, chicken & patties',
+        description: 'Bollywood-backed plant-based meat brand (co-founded by Riteish and Genelia Deshmukh) making mutton and chicken alternatives, kebabs and burger patties.',
+        links: [
+          { label: 'Shop online', url: 'https://shop.imaginefoods.in' },
+          { label: 'About / cities served', url: 'https://about.imaginefoods.in/' }
+        ],
+        meta: 'Based in Mumbai/Thane; explicitly delivers to Bengaluru along with Delhi/NCR, Pune and Hyderabad.',
+        city: 'Mumbai'
+      },
+      {
+        name: 'The Alt Co',
+        section: 'bengaluru',
+        categories: ['food'],
+        tag: 'Plant milk, yogurt & protein powders',
+        description: 'Bengaluru-headquartered plant-based dairy brand making oat, almond and soy milk, yogurts and plant protein powders.',
+        links: [
+          { label: 'Alt Co website', url: 'https://alt.company/' }
+        ],
+        meta: 'Headquartered in Vasanthnagar, Bengaluru; sold online and via supermarkets and specialty stores.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'Shaka Harry',
+        section: 'bengaluru',
+        categories: ['food', 'protein'],
+        tag: 'MS Dhoni-backed plant meat',
+        description: 'Plant-based meat brand — mutton keema, chicken nuggets, burger patties and samosas — backed by MS Dhoni; the first plant-meat brand with a physical outlet at an Indian airport.',
+        links: [
+          { label: 'Official site', url: 'https://shakaharry.com/' },
+          { label: 'Buy on BigBasket', url: 'https://www.bigbasket.com/pd/40243777/shaka-harry-just-like-mutton-keema-plant-based-meat-vegan-230-g-1/' }
+        ],
+        meta: 'Experience outlet at Kempegowda International Airport, Bengaluru; also ships pan-India online.',
+        city: 'Bengaluru'
+      },
+      {
+        name: 'GoodDot',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Plant-based mutton, chicken & biryani',
+        description: 'India’s largest plant-based meat brand — UnMutton Keema, Vegicken chunks, soya chaap and ready vegan biryani.',
+        links: [
+          { label: 'GoodDot website', url: 'https://gooddot.in/' }
+        ],
+        meta: 'Based in Udaipur, Rajasthan; ships pan-India with 3–5 day delivery to Tier 1/2 cities including Bengaluru.',
+        city: 'Udaipur'
+      },
+      {
+        name: 'Blue Tribe Foods',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Plant-based nuggets, patties & momos',
+        description: 'Plant-based meat brand making chicken nuggets, burger patties, momos and sausages from soy and pea protein.',
+        links: [
+          { label: 'Shop online', url: 'https://www.bluetribefoods.com/collections/shop' },
+          { label: 'Buy on BigBasket', url: 'https://www.bigbasket.com/pb/blue-tribe-foods/' }
+        ],
+        meta: 'Based in Mumbai; ships pan-India and sold via BigBasket.',
+        city: 'Mumbai'
+      },
+      {
+        name: 'Evo Foods',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Plant-based liquid & boiled egg',
+        description: 'Mumbai startup making plant-based liquid egg and a plant-based boiled egg, cholesterol-free and made from mung bean protein.',
+        links: [
+          { label: 'Buy on Amazon', url: 'https://www.amazon.in/evo-plant-based-eggs/s?k=evo+plant+based+eggs' },
+          { label: 'The Better India feature', url: 'https://thebetterindia.com/244911/mumbai-startup-evo-plant-based-egg-vegan-food-alternative-innovation-india-anj135/' }
+        ],
+        meta: 'Based in Mumbai; ships pan-India via Amazon and select retailers.',
+        city: 'Mumbai'
+      },
+      {
+        name: 'Wakao Foods',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Jackfruit-based meat alternative',
+        description: 'India’s first jackfruit-based food brand (as seen on Shark Tank India) — jackfruit meat in biryani, pulled “pork” and ready meal kits.',
+        links: [
+          { label: 'Wakao Foods website', url: 'https://www.wakaofoods.com/' },
+          { label: 'Shop products', url: 'https://www.wakaofoods.com/collections/products' }
+        ],
+        meta: 'Based in Kerala; ships pan-India online.',
+        city: 'Kerala'
+      },
+      {
+        name: 'Tata Simply Better',
+        section: 'beyond',
+        categories: ['food', 'protein'],
+        tag: 'Plant-based nuggets & fingers',
+        description: 'Tata Consumer Products’ plant-based meat range — chicken-style nuggets, spicy fingers and protein snacks, widely distributed.',
+        links: [
+          { label: 'Shop online', url: 'https://www.tatasimplybetter.com/collections/products' },
+          { label: 'Buy on BigBasket', url: 'https://www.bigbasket.com/pd/40267382/tata-simply-better-plant-based-nuggets-rich-in-protein-no-added-preservatives-270-g/' }
+        ],
+        meta: 'Pan-India distribution via Tata’s retail and quick-commerce network, including Bengaluru.',
+        city: 'India-wide'
+      },
+      {
+        name: 'Evolved Foods',
+        section: 'bengaluru',
+        categories: ['food', 'protein'],
+        tag: 'Plant protein, meals & baking mixes',
+        description: 'Plant-based protein, frozen plant-powered meals and millet-rich baking mixes; featured across several Bengaluru restaurants and cafes.',
+        links: [
+          { label: 'Evolved Foods website', url: 'https://evolvedfoods.in/' }
+        ],
+        meta: 'Served at multiple Bengaluru restaurants and cafes; ships pan-India to Tier I/II cities online.',
+        city: 'Bengaluru'
+      }
+    ];
+
+    function createCard(product) {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.dataset.categories = product.categories.join(',');
+      card.dataset.section = product.section;
+      card.dataset.city = product.city.toLowerCase();
+      card.dataset.name = product.name.toLowerCase();
+      card.dataset.tag = product.tag.toLowerCase();
+      card.dataset.description = product.description.toLowerCase();
+      card.dataset.meta = product.meta.toLowerCase();
+      card.dataset.links = product.links.map(l => l.label).join(' ').toLowerCase();
+
+      card.innerHTML = `
+        <div class="card-header">
+          <h3 class="card-title">${product.name}</h3>
+          <span class="card-tag">${product.tag}</span>
+        </div>
+        <p class="card-body">${product.description}</p>
+        <div class="card-links">
+          ${product.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join('')}
+        </div>
+        <p class="card-meta">
+          <span class="badge">${product.section === 'bengaluru' ? 'Bengaluru & online' : 'Online to Bengaluru'}</span>
+          <span>${product.meta}</span>
+        </p>
+      `;
+      return card;
+    }
+
+    const gridBlr = document.getElementById('grid-bengaluru');
+    const gridBeyond = document.getElementById('grid-beyond');
+    products.forEach(p => {
+      const card = createCard(p);
+      if (p.section === 'bengaluru') {
+        gridBlr.appendChild(card);
+      } else {
+        gridBeyond.appendChild(card);
+      }
+    });
+
+    const searchInput = document.getElementById('search');
+    const locationFilter = document.getElementById('locationFilter');
+    const pills = document.querySelectorAll('.pill');
+
+    function applyFilters() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const locationValue = locationFilter.value;
+      const activeCategory = document.querySelector('.pill.active').dataset.category;
+
+      document.querySelectorAll('.card').forEach(card => {
+        const name = card.dataset.name;
+        const tag = card.dataset.tag;
+        const desc = card.dataset.description;
+        const city = card.dataset.city;
+        const meta = card.dataset.meta;
+        const links = card.dataset.links;
+        const section = card.dataset.section;
+        const categories = card.dataset.categories.split(',');
+
+        let matchesSearch = true;
+        if (searchTerm) {
+          matchesSearch = [name, tag, desc, city, meta, links].some(field => field.includes(searchTerm));
+        }
+
+        let matchesLocation = true;
+        if (locationValue === 'bengaluru') {
+          matchesLocation = section === 'bengaluru';
+        } else if (locationValue === 'beyond') {
+          matchesLocation = section === 'beyond';
+        }
+
+        let matchesCategory = true;
+        if (activeCategory !== 'all') {
+          matchesCategory = categories.includes(activeCategory);
+        }
+
+        card.style.display = (matchesSearch && matchesLocation && matchesCategory) ? '' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    locationFilter.addEventListener('change', applyFilters);
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    // --- Sharing ---
+    const shareTitle = document.title;
+    const shareText = 'A curated list of vegan food, accessories & personal care products available in Bengaluru or online across India:';
+    const shareUrl = window.location.href;
+
+    const whatsappLink = document.getElementById('whatsappShare');
+    whatsappLink.href = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + shareUrl);
+
+    const shareToast = document.getElementById('shareToast');
+    function showToast(message) {
+      shareToast.textContent = message;
+      shareToast.classList.add('visible');
+      setTimeout(() => shareToast.classList.remove('visible'), 2200);
+    }
+
+    async function copyLink() {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        showToast('Link copied!');
+      } catch (err) {
+        showToast('Copy this link: ' + shareUrl);
+      }
+    }
+
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+        } catch (err) {
+          // User cancelled the share sheet or it failed silently — no action needed.
+        }
+      } else {
+        copyLink();
+      }
+    });
+  </script>
+</body>
+</html>
